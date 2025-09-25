@@ -1,0 +1,130 @@
+name: 🔄 CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  test:
+    name: 🧪 Test Suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🚀 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🔍 QA Validation
+        run: npm run qa:validate
+
+      - name: 🔍 Lint Code
+        run: npm run lint
+
+      - name: 🎨 Check Formatting
+        run: npm run format:check
+
+      - name: 🧪 Run Tests
+        run: npm test
+
+  build:
+    name: 🏗️ Build
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🚀 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🏗️ Build Project
+        run: npm run build
+
+      - name: 📦 Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts-${{ github.sha }}
+          path: dist/
+          retention-days: 7
+
+  release:
+    name: 🚀 Release
+    runs-on: ubuntu-latest
+    needs: [test, build]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🚀 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 📦 Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts-${{ github.sha }}
+          path: dist/
+
+      - name: 🏷️ Check for Version Tag
+        id: check-tag
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          if git tag --list | grep -q "^v${PACKAGE_VERSION}$"; then
+            echo "tag-exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "tag-exists=false" >> $GITHUB_OUTPUT
+          fi
+          echo "version=v${PACKAGE_VERSION}" >> $GITHUB_OUTPUT
+
+      - name: 🎉 Create Release
+        if: steps.check-tag.outputs.tag-exists == 'false'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.check-tag.outputs.version }}
+          release_name: Release ${{ steps.check-tag.outputs.version }}
+          body: |
+            ## 🚀 Release ${{ steps.check-tag.outputs.version }}
+            
+            ### Changes
+            - Automated release from CI/CD pipeline
+            - All tests passing ✅
+            - Build artifacts verified ✅
+            
+            ### Installation
+            ```bash
+            git clone https://github.com/tcanter/CopilotFlow.git
+            cd CopilotFlow
+            git checkout ${{ steps.check-tag.outputs.version }}
+            npm install
+            npm test
+            ```
+          draft: false
+          prerelease: false

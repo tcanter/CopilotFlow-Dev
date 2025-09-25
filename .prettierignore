@@ -1,0 +1,68 @@
+# Prettier ignore patterns for generated / transient artifacts
+# Entire temp directory (generated analysis & lint outputs)
+temp/
+# But keep placeholder file in ai outputs
+!temp/ai-outputs/.gitkeep
+
+# Lint / analysis outputs
+temp/eslint-results.json
+temp/ai-outputs/*
+!temp/ai-outputs/.gitkeep
+
+# Logs (already gitignored, list here for clarity)
+logs/
+logs/ai-conversations/
+
+# Dependency & build outputs
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+.eslintcache
+*.lcov
+.nyc_output
+.coverage
+.coverage.*
+
+# Framework / bundler caches
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist/
+.serverless/
+.turbo/
+
+# Testing & jest cache
+.jest/
+
+# Python caches
+__pycache__/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Sonar / scanner caches
+.scannerwork/
+.sonarlint/
+
+# Package manager stores
+.pnpm-store/
+
+# Prettier internal cache (if enabled)
+.prettiercache
+
+# TS execution scratch
+ts-node-*/
+
+# Misc generated artifacts we never want to format
+*.log
+*.tgz
+
+# Backup / cleanup directories
+.cleanup-backups/
+cleanup-backups/
+
+# Keep the placeholder in ai-outputs even though parent ignored above
+!temp/ai-outputs/.gitkeep

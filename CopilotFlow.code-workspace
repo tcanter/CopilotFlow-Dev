@@ -1,0 +1,32 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/.git": true,
+            "**/.venv": true,
+            "**/.cleanup-backups": true,
+            "**/node_modules": true,
+            "**/dist": true,
+            "**/coverage": true,
+            "**/temp": true
+        },
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "eslint.enable": true,
+        "prettier.requireConfig": true,
+        "typescript.tsdk": "node_modules/typescript/lib"
+    },
+    "extensions": {
+        "recommendations": [
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "GitHub.copilot",
+            "ms-python.python"
+        ]
+    }
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "githubRepo": {
+      "type": "string",
+      "defaultValue": "tcanter/CopilotFlow"
+    },
+    "copilotApiUrl": {
+      "type": "string",
+      "defaultValue": "https://api.githubcopilot.com/suggest"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Logic/workflows",
+      "apiVersion": "2019-05-01",
+      "name": "CopilotAgenticImprovement",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "definition": {
+          "$schema": "https://schema.management.azure.com/schemas/2016-06-01/workflowdefinition.json#",
+          "actions": {
+            "Trigger_On_PR": {
+              "type": "Request",
+              "kind": "Http",
+              "inputs": {
+                "method": "POST",
+                "uri": "[parameters('githubRepo')]/events/pull_request"
+              }
+            },
+            "Call_Copilot_API": {
+              "type": "Http",
+              "inputs": {
+                "method": "POST",
+                "uri": "[parameters('copilotApiUrl')]",
+                "body": {
+                  "repo": "[parameters('githubRepo')]",
+                  "event": "pull_request"
+                }
+              },
+              "runAfter": {
+                "Trigger_On_PR": ["Succeeded"]
+              }
+            },
+            "Agentic_Loop": {
+              "type": "Until",
+              "expression": {
+                "equals": ["@outputs('Call_Copilot_API').status", "completed"]
+              },
+              "actions": {
+                "Apply_Suggestion": {
+                  "type": "Function",
+                  "inputs": {
+                    "function": "ApplyCopilotSuggestion",
+                    "parameters": {
+                      "suggestion": "@outputs('Call_Copilot_API').body.suggestion"
+                    }
+                  }
+                },
+                "Run_Tests_Lint": {
+                  "type": "Function",
+                  "inputs": {
+                    "function": "RunQualityGate",
+                    "parameters": {
+                      "repo": "[parameters('githubRepo')]"
+                    }
+                  }
+                }
+              }
+            },
+            "Trigger_Deployment": {
+              "type": "Http",
+              "inputs": {
+                "method": "POST",
+                "uri": "https://dev.azure.com/{organization}/{project}/_apis/pipelines/{pipelineId}/runs?api-version=6.0-preview.1",
+                "body": {
+                  "resources": {
+                    "repositories": {
+                      "self": {
+                        "refName": "refs/heads/main"
+                      }
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Agentic_Loop": ["Succeeded"]
+              }
+            }
+          },
+          "triggers": {
+            "GitHub_PR": {
+              "type": "Request",
+              "kind": "Http",
+              "inputs": {
+                "method": "POST",
+                "uri": "[parameters('githubRepo')]/events/pull_request"
+              }
+            }
+          }
+        },
+        "parameters": {
+          "githubRepo": "[parameters('githubRepo')]",
+          "copilotApiUrl": "[parameters('copilotApiUrl')]"
+        }
+      }
+    }
+  ]
+}

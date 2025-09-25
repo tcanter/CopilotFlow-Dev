@@ -1,0 +1,29 @@
+{
+  "project": {
+    "name": "CopilotFlow",
+    "version": "1.0.0",
+    "description": "An AI-powered project built with CopilotFlow",
+    "language": "auto-detect"
+  },
+  "ai": {
+    "provider": "OpenAI",
+    "model": "gpt-4",
+    "enabled": true,
+    "features": {
+      "code_analysis": true,
+      "documentation_generation": true,
+      "commit_messages": true,
+      "code_review": true
+    }
+  },
+  "automation": {
+    "daily_workflow": true,
+    "auto_commit_messages": false,
+    "auto_documentation": false
+  },
+  "output": {
+    "verbose": true,
+    "save_conversations": true,
+    "log_level": "INFO"
+  }
+}

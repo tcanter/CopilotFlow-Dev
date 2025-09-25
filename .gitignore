@@ -1,0 +1,192 @@
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python virtual environment
+# Cleanup backups
+.cleanup-backups/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+logs/ai-conversations/*
+!logs/ai-conversations/.gitkeep
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output
+.coverage
+.coverage.*
+
+# ESLint cache
+.eslintcache
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files (keep structure but exclude content)
+temp/ai-outputs/*
+!temp/ai-outputs/.gitkeep
+temp/eslint-results.json
+
+# AI conversation logs (keep structure but exclude content)
+logs/ai-conversations/*
+!logs/ai-conversations/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+
+# C#
+bin/
+obj/
+*.user
+*.suo
+*.cache
+
+INSTRUCTIONS.md
+# Docker
+*.dockerignore
+Dockerfile.dev
+
+# Azure
+.azure/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Certificates
+*.pem
+*.key
+*.crt
+
+# Local configuration
+config/local.json
+local.settings.json
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Additional language / tool caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.scannerwork/
+.sonarlint/
+.jest/
+.turbo/
+.pnpm-store/
+.prettiercache
+ts-node-*/
+
+# IDE specific (additional)
+*.iml
+
+# Local performance profiling outputs
+profile-*.json
+
+# NOTE: Consider committing a single lockfile (package-lock.json, pnpm-lock.yaml, or yarn.lock) for reproducible builds. Currently yarn.lock is ignored.
