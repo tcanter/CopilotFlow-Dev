@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  SampleUpdateInfo.xml — BizTalk Server Database Pointer Update Template
+  
+  PURPOSE
+  -------
+  This file is used with UpdateDatabase.vbs and UpdateRegistry.vbs to update
+  all BizTalk configuration tables and registry entries to point to the new
+  SQL Server location after a database move or restore operation.
+
+  SOURCE
+  ------
+  Microsoft Learn: How to Configure the Destination System for Log Shipping
+  https://learn.microsoft.com/en-us/biztalk/core/how-to-configure-the-destination-system-for-log-shipping
+  
+  Microsoft Learn: Restore your databases
+  https://learn.microsoft.com/en-us/biztalk/core/how-to-restore-your-databases
+
+  LOCATION ON BIZTALK SERVER
+  --------------------------
+  32-bit:  %SystemDrive%\Program Files\Microsoft BizTalk Server <version>\Schema\Restore\SampleUpdateInfo.xml
+  64-bit:  %SystemDrive%\Program Files (x86)\Microsoft BizTalk Server <version>\Bins32\Schema\Restore\SampleUpdateInfo.xml
+
+  USAGE
+  -----
+  STEP 1: Replace ALL instances of "SourceServer" with the source SQL server name (include quotes).
+  STEP 2: Replace ALL instances of "DestinationServer" with the target SQL server name (include quotes).
+  STEP 3: If database names differ on source and target, update oldDBName/newDBName accordingly.
+  STEP 4: If BAM is configured, uncomment the BAM databases section and add BAMAlertsApplication
+          and BAMAlertsNSMain entries under OtherDatabases (see notes below).
+  STEP 5: If Rules Engine is configured, uncomment the BizTalkRuleEngineDb section.
+  STEP 6: If multiple MessageBox databases exist, duplicate the MessageBoxDB entry
+          and set IsMaster="0" for all non-master databases.
+  STEP 7: Comment out any databases NOT being moved (only include databases being relocated).
+
+  SCRIPT EXECUTION — run on ONE BizTalk server in the group only:
+    cscript UpdateDatabase.vbs SampleUpdateInfo.xml
+
+  NOTE: On SQL Server 2016 or later, you may need to change conn.Provider in UpdateDatabase.vbs
+  from "SQLOLEDB" to "MSOLEDBSQL". Download MSOLEDBSQL 18.x from Microsoft if needed.
+
+  REGISTRY EXECUTION — run on EVERY BizTalk server in the group:
+    cscript UpdateRegistry.vbs SampleUpdateInfo.xml
+
+  IMPORTANT: Run scripts from a 64-bit command prompt on 64-bit computers.
+  Default cmd.exe at %SystemDrive%\windows\System32\cmd.exe is already 64-bit.
+-->
+
+<UpdateInfo>
+
+  <!-- ============================================================
+       MANAGEMENT DATABASE
+       The central BizTalk group configuration store.
+       This entry updates the master pointer for all other databases.
+       ============================================================ -->
+  <BizTalkMgmtDb
+    oldDBName="BizTalkMgmtDb"
+    oldDBServer="SourceServer"
+    newDBName="BizTalkMgmtDb"
+    newDBServer="DestinationServer"
+  />
+
+  <!-- ============================================================
+       MESSAGEBOX DATABASE (Master)
+       Runtime messaging engine. IsMaster="1" for the primary MsgBox.
+       If multiple MessageBox databases exist, duplicate this entry
+       for each non-master database and set IsMaster="0".
+       ============================================================ -->
+  <MessageBoxDB
+    oldDBName="BizTalkMsgBoxDb"
+    oldDBServer="SourceServer"
+    newDBName="BizTalkMsgBoxDb"
+    newDBServer="DestinationServer"
+    IsMaster="1"
+  />
+
+  <!-- Example: Second MessageBox database (uncomment if applicable)
+  <MessageBoxDB
+    oldDBName="BizTalkMsgBoxDb"
+    oldDBServer="SourceServer"
+    newDBName="BizTalkMsgBoxDb"
+    newDBServer="DestinationServer2"
+    IsMaster="0"
+  />
+  -->
+
+  <!-- ============================================================
+       TRACKING DATABASE
+       BizTalk health monitoring and message tracking store.
+       ============================================================ -->
+  <TrackingDB
+    oldDBName="BizTalkDTADb"
+    oldDBServer="SourceServer"
+    newDBName="BizTalkDTADb"
+    newDBServer="DestinationServer"
+  />
+
+  <!-- ============================================================
+       SSO DATABASE
+       Enterprise Single Sign-On configuration store.
+       Required for host instance startup.
+       ============================================================ -->
+  <SSODB
+    oldDBName="SSODB"
+    oldDBServer="SourceServer"
+    newDBName="SSODB"
+    newDBServer="DestinationServer"
+  />
+
+  <!-- ============================================================
+       BAM PRIMARY IMPORT DATABASE
+       Uncomment if BAM is deployed.
+       Note: BAM Archive and BAM Star Schema must be restored from
+       a backup OLDER than the BAMPrimaryImport backup.
+       ============================================================ -->
+  <!--
+  <BAMPrimaryImportDB
+    oldDBName="BAMPrimaryImport"
+    oldDBServer="SourceServer"
+    newDBName="BAMPrimaryImport"
+    newDBServer="DestinationServer"
+  />
+  -->
+
+  <!-- ============================================================
+       BAM STAR SCHEMA DATABASE
+       Uncomment if BAM is deployed.
+       ============================================================ -->
+  <!--
+  <BAMStarSchemaDB
+    oldDBName="BAMStarSchema"
+    oldDBServer="SourceServer"
+    newDBName="BAMStarSchema"
+    newDBServer="DestinationServer"
+  />
+  -->
+
+  <!-- ============================================================
+       BAM ARCHIVE DATABASE
+       Uncomment if BAM is deployed.
+       ============================================================ -->
+  <!--
+  <BAMArchiveDB
+    oldDBName="BAMArchive"
+    oldDBServer="SourceServer"
+    newDBName="BAMArchive"
+    newDBServer="DestinationServer"
+  />
+  -->
+
+  <!-- ============================================================
+       BAM ANALYSIS DATABASE
+       Uncomment if BAM Analysis (OLAP) is deployed.
+       Backed up separately — not in the BizTalk backup job chain.
+       ============================================================ -->
+  <!--
+  <BAMAnalysisDB
+    oldDBName="BAMAnalysis"
+    oldDBServer="SourceServer"
+    newDBName="BAMAnalysis"
+    newDBServer="DestinationServer"
+  />
+  -->
+
+  <!-- ============================================================
+       RULE ENGINE DATABASE
+       Uncomment if Business Rules Engine (BRE) is configured.
+       ============================================================ -->
+  <!--
+  <RulesEngineDB
+    oldDBName="BizTalkRuleEngineDb"
+    oldDBServer="SourceServer"
+    newDBName="BizTalkRuleEngineDb"
+    newDBServer="DestinationServer"
+  />
+  -->
+
+  <!-- ============================================================
+       OTHER DATABASES
+       Add custom databases or BAM Notification Services databases here.
+       
+       IMPORTANT: If BAM Notification Services is configured, you MUST
+       add both BAMAlertsApplication and BAMAlertsNSMain entries here.
+       These are NOT included in the standard BizTalk backup job and
+       must be added manually.
+       ============================================================ -->
+  <OtherDatabases>
+
+    <!-- BAM Alerts Application DB — uncomment if BAM Notification Services is configured -->
+    <!--
+    <Database
+      Name="BAM Alerts Application DB"
+      oldDBName="BAMAlertsApplication"
+      oldDBServer="SourceServer"
+      newDBName="BAMAlertsApplication"
+      newDBServer="DestinationServer"
+    />
+    -->
+
+    <!-- BAM Alerts Instance DB — uncomment if BAM Notification Services is configured -->
+    <!--
+    <Database
+      Name="BAM Alerts Instance DB"
+      oldDBName="BAMAlertsNSMain"
+      oldDBServer="SourceServer"
+      newDBName="BAMAlertsNSMain"
+      newDBServer="DestinationServer"
+    />
+    -->
+
+    <!-- Custom database example — uncomment and fill in if you have custom databases
+         backed up by the BizTalk backup job (added via How to Back Up Custom Databases)
+    <Database
+      Name="My Custom Application DB"
+      oldDBName="MyCustomDb"
+      oldDBServer="SourceServer"
+      newDBName="MyCustomDb"
+      newDBServer="DestinationServer"
+    />
+    -->
+
+  </OtherDatabases>
+
+</UpdateInfo>
