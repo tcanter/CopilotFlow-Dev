@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns="http://schemas.microsoft.com/project">
+  <SaveVersion>14</SaveVersion>
+  <Name>BizTalk SQL Migration - Execution Plan - 4 Servers</Name>
+  <CreationDate>2026-05-02T08:00:00</CreationDate>
+  <LastSaved>2026-05-02T08:00:00</LastSaved>
+  <ScheduleFromStart>1</ScheduleFromStart>
+  <StartDate>2026-09-07T08:00:00</StartDate>
+  <DefaultStartTime>08:00:00</DefaultStartTime>
+  <DefaultFinishTime>17:00:00</DefaultFinishTime>
+  <MinutesPerDay>480</MinutesPerDay>
+  <MinutesPerWeek>2400</MinutesPerWeek>
+  <DaysPerMonth>20</DaysPerMonth>
+  <DurationFormat>7</DurationFormat>
+  <WorkFormat>2</WorkFormat>
+  <DefaultTaskType>0</DefaultTaskType>
+  <Calendars>
+    <Calendar>
+      <UID>1</UID>
+      <Name>Standard</Name>
+      <IsBaseCalendar>1</IsBaseCalendar>
+      <BaseCalendarUID>-1</BaseCalendarUID>
+      <WeekDays>
+        <WeekDay><DayType>1</DayType><DayWorking>0</DayWorking></WeekDay>
+        <WeekDay><DayType>2</DayType><DayWorking>1</DayWorking><WorkingTimes><WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime><WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime></WorkingTimes></WeekDay>
+        <WeekDay><DayType>3</DayType><DayWorking>1</DayWorking><WorkingTimes><WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime><WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime></WorkingTimes></WeekDay>
+        <WeekDay><DayType>4</DayType><DayWorking>1</DayWorking><WorkingTimes><WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime><WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime></WorkingTimes></WeekDay>
+        <WeekDay><DayType>5</DayType><DayWorking>1</DayWorking><WorkingTimes><WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime><WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime></WorkingTimes></WeekDay>
+        <WeekDay><DayType>6</DayType><DayWorking>1</DayWorking><WorkingTimes><WorkingTime><FromTime>08:00:00</FromTime><ToTime>12:00:00</ToTime></WorkingTime><WorkingTime><FromTime>13:00:00</FromTime><ToTime>17:00:00</ToTime></WorkingTime></WorkingTimes></WeekDay>
+        <WeekDay><DayType>7</DayType><DayWorking>0</DayWorking></WeekDay>
+      </WeekDays>
+    </Calendar>
+  </Calendars>
+  <Tasks>
+    <Task>
+      <UID>0</UID><ID>0</ID>
+      <Name>BizTalk SQL Migration Execution - 4 Servers</Name>
+      <Type>1</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>0</WBS><OutlineNumber>0</OutlineNumber><OutlineLevel>0</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-07T08:00:00</Start><Finish>2026-09-29T08:00:00</Finish>
+      <Duration>PT128H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>1</Summary><Manual>0</Manual><Active>1</Active>
+      <ManualStart>2026-09-07T08:00:00</ManualStart><ManualFinish>2026-09-29T08:00:00</ManualFinish>
+      <ManualDuration>PT128H0M0S</ManualDuration>
+      <Work>PT128H0M0S</Work><RegularWork>PT128H0M0S</RegularWork>
+      <RemainingDuration>PT128H0M0S</RemainingDuration><RemainingWork>PT128H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>0</EffortDriven>
+    </Task>
+    <Task>
+      <UID>1</UID><ID>1</ID>
+      <Name>Four SQL Servers (SQL-A MsgBox, SQL-B DTA, SQL-C Admin, SQL-D BAM)</Name>
+      <Type>1</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1</WBS><OutlineNumber>1</OutlineNumber><OutlineLevel>1</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-07T08:00:00</Start><Finish>2026-09-29T08:00:00</Finish>
+      <Duration>PT128H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>1</Summary><Manual>0</Manual><Active>1</Active>
+      <ManualStart>2026-09-07T08:00:00</ManualStart><ManualFinish>2026-09-29T08:00:00</ManualFinish>
+      <ManualDuration>PT128H0M0S</ManualDuration>
+      <Work>PT128H0M0S</Work><RegularWork>PT128H0M0S</RegularWork>
+      <RemainingDuration>PT128H0M0S</RemainingDuration><RemainingWork>PT128H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>0</EffortDriven>
+      <Notes>Maximum isolation topology: SQL-A hosts BizTalkMsgBoxDb only (highest I/O workload, fully isolated). SQL-B hosts BizTalkDTADb only (tracking archiving isolated from runtime). SQL-C hosts BizTalkMgmtDb, SSODB, BizTalkRuleEngineDb (Admin databases). SQL-D hosts BAMPrimaryImport, BAMArchive, BAMStarSchema, BAMAlertsApplication, BAMAlertsNSMain (BAM fully isolated). SampleUpdateInfo.xml requires four separate server name entries — one per database group. BizTalk service account logins must exist on all four SQL instances. Four parallel restore lanes during cutover produces the shortest possible maintenance window — restore I/O is distributed across four independent servers.</Notes>
+      <Hyperlink>BizTalk Server Database Overview</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/biztalk/core/databases-in-biztalk-server</HyperlinkAddress>
+    </Task>
+    <Task>
+      <UID>2</UID><ID>2</ID>
+      <Name>Discover inventory and role mapping</Name>
+      <Type>0</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1.1</WBS><OutlineNumber>1.1</OutlineNumber><OutlineLevel>2</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-07T08:00:00</Start><Finish>2026-09-09T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>0</Summary><Manual>0</Manual><Active>1</Active>
+      <ManualStart>2026-09-07T08:00:00</ManualStart><ManualFinish>2026-09-09T17:00:00</ManualFinish>
+      <ManualDuration>PT24H0M0S</ManualDuration>
+      <Work>PT24H0M0S</Work><RegularWork>PT24H0M0S</RegularWork>
+      <RemainingDuration>PT24H0M0S</RemainingDuration><RemainingWork>PT24H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>1</EffortDriven>
+      <Notes>Catalog all BizTalk databases and assign to target roles: SQL-A (MsgBox), SQL-B (DTA), SQL-C (Admin: MgmtDb, SSODB, RuleEngineDb), SQL-D (BAM: BAMPrimaryImport, BAMArchive, BAMStarSchema, BAMAlertsApplication, BAMAlertsNSMain). Document current instance name, all service account logins, SQL Agent jobs grouped by owning database, DTC configuration, linked server definitions, collation, and database sizes on all four target servers. The four-server topology is the most complex inventory — each server must be individually verified for disk space, memory, correct SQL collation (Latin1_General_CI_AS for BAM databases), and DTC configuration before proceeding.</Notes>
+      <Hyperlink>BizTalk Server Backup and Restore</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/biztalk/core/backing-up-and-restoring-biztalk-server</HyperlinkAddress>
+    </Task>
+    <Task>
+      <UID>3</UID><ID>3</ID>
+      <Name>Design shared artifact set for all servers</Name>
+      <Type>0</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1.2</WBS><OutlineNumber>1.2</OutlineNumber><OutlineLevel>2</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-10T08:00:00</Start><Finish>2026-09-11T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>0</Summary><Manual>0</Manual><Active>1</Active>
+      <PredecessorLink><PredecessorUID>2</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject><LinkLag>0</LinkLag><LagFormat>7</LagFormat></PredecessorLink>
+      <ManualStart>2026-09-10T08:00:00</ManualStart><ManualFinish>2026-09-11T17:00:00</ManualFinish>
+      <ManualDuration>PT16H0M0S</ManualDuration>
+      <Work>PT16H0M0S</Work><RegularWork>PT16H0M0S</RegularWork>
+      <RemainingDuration>PT16H0M0S</RemainingDuration><RemainingWork>PT16H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>1</EffortDriven>
+      <Notes>Populate SampleUpdateInfo.xml with four separate database-to-server mappings — one entry per server group. Each entry maps the database name to the target server and instance. Design login deployment to apply BizTalk service accounts, host instance accounts, and SSO accounts to all four SQL instances. Map SQL Agent jobs to their owning server: Backup BizTalk Server runs on SQL-C (owns MgmtDb), MsgBox housekeeping jobs run on SQL-A, BAM maintenance jobs run on SQL-D. Design a four-lane coordinator script with a completion gate before the ConfigFramework repoint step executes. Define the rollback decision matrix: failure on any single lane requires full rollback.</Notes>
+      <Hyperlink>How to Move the BizTalk Server Databases</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/biztalk/core/how-to-move-the-biztalk-server-databases</HyperlinkAddress>
+    </Task>
+    <Task>
+      <UID>4</UID><ID>4</ID>
+      <Name>Build and validate reusable scripts and XML packages</Name>
+      <Type>0</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1.3</WBS><OutlineNumber>1.3</OutlineNumber><OutlineLevel>2</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-14T08:00:00</Start><Finish>2026-09-16T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>0</Summary><Manual>0</Manual><Active>1</Active>
+      <PredecessorLink><PredecessorUID>3</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject><LinkLag>0</LinkLag><LagFormat>7</LagFormat></PredecessorLink>
+      <ManualStart>2026-09-14T08:00:00</ManualStart><ManualFinish>2026-09-16T17:00:00</ManualFinish>
+      <ManualDuration>PT24H0M0S</ManualDuration>
+      <Work>PT24H0M0S</Work><RegularWork>PT24H0M0S</RegularWork>
+      <RemainingDuration>PT24H0M0S</RemainingDuration><RemainingWork>PT24H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>1</EffortDriven>
+      <Notes>Build four independent, parameterized restore lane scripts — Lane-A (SQL-A: MsgBox), Lane-B (SQL-B: DTA), Lane-C (SQL-C: Admin), Lane-D (SQL-D: BAM). Build a shared pre-flight validation script that checks all four target servers for reachability, disk space, login provisioning, and DTC configuration before any restore begins. Build the four-entry SampleUpdateInfo.xml and test UpdateDatabase.vbs in non-production. Build the four-lane coordinator script using PowerShell background jobs (Start-Job / Wait-Job) to launch all four lanes in parallel and gate the repoint step on all four completing WITH RECOVERY. All scripts must produce timestamped, per-lane logs.</Notes>
+      <Hyperlink>Restore a Database Backup Using SSMS</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-database-backup-using-ssms</HyperlinkAddress>
+    </Task>
+    <Task>
+      <UID>5</UID><ID>5</ID>
+      <Name>Rehearsal with four-way parallel restore</Name>
+      <Type>0</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1.4</WBS><OutlineNumber>1.4</OutlineNumber><OutlineLevel>2</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-17T08:00:00</Start><Finish>2026-09-21T17:00:00</Finish>
+      <Duration>PT24H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>0</Summary><Manual>0</Manual><Active>1</Active>
+      <PredecessorLink><PredecessorUID>4</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject><LinkLag>0</LinkLag><LagFormat>7</LagFormat></PredecessorLink>
+      <ManualStart>2026-09-17T08:00:00</ManualStart><ManualFinish>2026-09-21T17:00:00</ManualFinish>
+      <ManualDuration>PT24H0M0S</ManualDuration>
+      <Work>PT24H0M0S</Work><RegularWork>PT24H0M0S</RegularWork>
+      <RemainingDuration>PT24H0M0S</RemainingDuration><RemainingWork>PT24H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>1</EffortDriven>
+      <Notes>Execute full non-production rehearsal with the four-lane coordinator script running all restore lanes simultaneously. Record per-lane start and completion times — the slowest lane (expected: SQL-A MsgBox due to size) sets the total restore phase window. Validate that the coordinator gate blocks the ConfigFramework repoint until all four lanes complete. Run the full BizTalk start sequence post-restore: start host instances, re-enable receive locations, send test messages through each integration endpoint. Verify logins, SQL Agent jobs, and DTC across all four target servers independently. Total rehearsed window should be 8 hours or less. If any lane exceeds targets, optimize its restore parallelism settings (FILE= clauses in RESTORE DATABASE).</Notes>
+      <Hyperlink>Restore and Recovery Overview (SQL Server)</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-and-recovery-overview-sql-server</HyperlinkAddress>
+    </Task>
+    <Task>
+      <UID>6</UID><ID>6</ID>
+      <Name>CAB readiness and maintenance freeze prep</Name>
+      <Type>0</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1.5</WBS><OutlineNumber>1.5</OutlineNumber><OutlineLevel>2</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-22T08:00:00</Start><Finish>2026-09-23T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>0</Summary><Manual>0</Manual><Active>1</Active>
+      <PredecessorLink><PredecessorUID>5</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject><LinkLag>0</LinkLag><LagFormat>7</LagFormat></PredecessorLink>
+      <ManualStart>2026-09-22T08:00:00</ManualStart><ManualFinish>2026-09-23T17:00:00</ManualFinish>
+      <ManualDuration>PT16H0M0S</ManualDuration>
+      <Work>PT16H0M0S</Work><RegularWork>PT16H0M0S</RegularWork>
+      <RemainingDuration>PT16H0M0S</RemainingDuration><RemainingWork>PT16H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>1</EffortDriven>
+      <Notes>Submit CAB record with four-server topology diagram, per-lane rehearsal timing evidence, four-server rollback plan, and four-DBA on-call roster. The rollback plan must be explicit: if any single lane fails after restores begin on other lanes, the only safe outcome is full rollback — BizTalk cannot operate when its database split is incomplete. Confirm four DBAs are on-call for cutover night, one per target server. Pre-stage coordinator script, all four lane scripts, and runbook on the jump server. Freeze BizTalk application deployments. Confirm DTC is reachable from every BizTalk server to each of the four SQL servers independently before the maintenance window opens.</Notes>
+      <Hyperlink>BizTalk Server Operational Readiness Checklist</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/biztalk/technical-guides/operational-readiness-checklist</HyperlinkAddress>
+    </Task>
+    <Task>
+      <UID>7</UID><ID>7</ID>
+      <Name>Cutover: four-way parallel restore plus repoint</Name>
+      <Type>0</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1.6</WBS><OutlineNumber>1.6</OutlineNumber><OutlineLevel>2</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-24T08:00:00</Start><Finish>2026-09-24T17:00:00</Finish>
+      <Duration>PT8H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>0</Summary><Manual>0</Manual><Active>1</Active>
+      <PredecessorLink><PredecessorUID>6</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject><LinkLag>0</LinkLag><LagFormat>7</LagFormat></PredecessorLink>
+      <ManualStart>2026-09-24T08:00:00</ManualStart><ManualFinish>2026-09-24T17:00:00</ManualFinish>
+      <ManualDuration>PT8H0M0S</ManualDuration>
+      <Work>PT8H0M0S</Work><RegularWork>PT8H0M0S</RegularWork>
+      <RemainingDuration>PT8H0M0S</RemainingDuration><RemainingWork>PT8H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>1</EffortDriven>
+      <Notes>Maintenance window execution sequence: (1) Disable all BizTalk receive locations and stop all host instances. (2) Take final tail-log backups of all BizTalk databases on source SQL. (3) Launch coordinator script — four restore lanes run in parallel: Lane-A restores BizTalkMsgBoxDb to SQL-A, Lane-B restores BizTalkDTADb to SQL-B, Lane-C restores Admin databases to SQL-C, Lane-D restores BAM databases to SQL-D. (4) Coordinator uses Wait-Job to block until all four lanes complete WITH RECOVERY — do not proceed if any lane fails. (5) Apply logins to all four servers simultaneously. Deploy SQL Agent jobs to their owning servers. (6) Update SampleUpdateInfo.xml with all four server names (four separate database-to-server entries) and execute UpdateDatabase.vbs from the BizTalk ConfigFramework folder. (7) Start host instances, re-enable receive locations. (8) Validate test messages across all critical integration endpoints before closing the maintenance window.</Notes>
+      <Hyperlink>How to Move the BizTalk Server Databases</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/biztalk/core/how-to-move-the-biztalk-server-databases</HyperlinkAddress>
+    </Task>
+    <Task>
+      <UID>8</UID><ID>8</ID>
+      <Name>Post-cutover validation and hypercare</Name>
+      <Type>0</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1.7</WBS><OutlineNumber>1.7</OutlineNumber><OutlineLevel>2</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-25T08:00:00</Start><Finish>2026-09-28T17:00:00</Finish>
+      <Duration>PT16H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Summary>0</Summary><Manual>0</Manual><Active>1</Active>
+      <PredecessorLink><PredecessorUID>7</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject><LinkLag>0</LinkLag><LagFormat>7</LagFormat></PredecessorLink>
+      <ManualStart>2026-09-25T08:00:00</ManualStart><ManualFinish>2026-09-28T17:00:00</ManualFinish>
+      <ManualDuration>PT16H0M0S</ManualDuration>
+      <Work>PT16H0M0S</Work><RegularWork>PT16H0M0S</RegularWork>
+      <RemainingDuration>PT16H0M0S</RemainingDuration><RemainingWork>PT16H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>1</EffortDriven>
+      <Notes>Validate health across all four SQL servers: BizTalk host instances connecting to SQL-A (MsgBox), SQL-B (DTA), SQL-C (Admin), and SQL-D (BAM). Verify suspended message count at baseline, BAM portal tracking data live from SQL-D, BizTalk Admin Console connected to SQL-C (MgmtDb), SQL Agent jobs executing on their owning servers on schedule, DTC connectivity independently verified from all BizTalk servers to each of the four SQL servers, backup jobs updated and running for all four instances. Monitor for 72 hours minimum. Configure monitoring alerts for all four SQL servers before closing hypercare. Require written sign-off from BizTalk lead, DBA lead, BAM/reporting lead, and integration business owners before closing the CAB change record.</Notes>
+      <Hyperlink>BizTalk Server Operational Readiness Checklist</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/biztalk/technical-guides/operational-readiness-checklist</HyperlinkAddress>
+    </Task>
+    <Task>
+      <UID>9</UID><ID>9</ID>
+      <Name>Execution complete</Name>
+      <Type>0</Type><IsNull>0</IsNull><CreateDate>2026-05-02T08:00:00</CreateDate>
+      <WBS>1.8</WBS><OutlineNumber>1.8</OutlineNumber><OutlineLevel>2</OutlineLevel>
+      <Priority>500</Priority>
+      <Start>2026-09-29T08:00:00</Start><Finish>2026-09-29T08:00:00</Finish>
+      <Duration>PT0H0M0S</Duration><DurationFormat>7</DurationFormat>
+      <Milestone>1</Milestone><Summary>0</Summary><Manual>0</Manual><Active>1</Active>
+      <PredecessorLink><PredecessorUID>8</PredecessorUID><Type>1</Type><CrossProject>0</CrossProject><LinkLag>0</LinkLag><LagFormat>7</LagFormat></PredecessorLink>
+      <ManualStart>2026-09-29T08:00:00</ManualStart><ManualFinish>2026-09-29T08:00:00</ManualFinish>
+      <ManualDuration>PT0H0M0S</ManualDuration>
+      <Work>PT0H0M0S</Work><RegularWork>PT0H0M0S</RegularWork>
+      <RemainingDuration>PT0H0M0S</RemainingDuration><RemainingWork>PT0H0M0S</RemainingWork>
+      <ResumeValid>0</ResumeValid><Estimated>0</Estimated><ConstraintType>0</ConstraintType>
+      <CalendarUID>-1</CalendarUID><FreeformDurationFormat>7</FreeformDurationFormat><EffortDriven>1</EffortDriven>
+      <Notes>Migration complete. SQL-A (MsgBox), SQL-B (DTA), SQL-C (Admin), and SQL-D (BAM) all operational. Hypercare closed with written sign-off from all required stakeholders. Schedule decommission of source SQL instance databases after 30-day retention period. Update CMDB with four new SQL server entries and updated database placement records for all BizTalk databases.</Notes>
+      <Hyperlink>BizTalk Server Backup and Restore</Hyperlink>
+      <HyperlinkAddress>https://learn.microsoft.com/en-us/biztalk/core/backing-up-and-restoring-biztalk-server</HyperlinkAddress>
+    </Task>
+  </Tasks>
+</Project>
